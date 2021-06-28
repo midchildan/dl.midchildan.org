@@ -1,0 +1,47 @@
+<html>
+  <body>
+    <textarea
+      id="editable"
+      rows="3"
+      ,
+      cols="50"
+      onkeydown="logKeyDown()"
+      onkeyup="logKeyUp()"
+      onkeypress="logKeyPress()"
+    ></textarea>
+    <script>
+      var input = document.getElementById("editable");
+      input.addEventListener("compositionstart", logCompositionEvent);
+      input.addEventListener("compositionupdate", logCompositionEvent);
+      input.addEventListener("compositionend", logCompositionEvent);
+      function logCompositionEvent(event) {
+        console.log({
+          type: event.type,
+          data: event.data,
+        });
+      }
+      function logKeyDown() {
+        console.log({
+          type: "keyDown",
+          keyCode: event.keyCode,
+          key: event.key,
+          isComposing: event.isComposing,
+        });
+      }
+      function logKeyUp() {
+        console.log({
+          type: "keyUp",
+          keyCode: event.keyCode,
+          key: event.key,
+          isComposing: event.isComposing,
+        });
+      }
+      function logKeyPress() {
+        console.log({
+          type: "keyPress",
+          keyCode: event.keyCode,
+        });
+      }
+    </script>
+  </body>
+</html>
